@@ -1,21 +1,83 @@
 ---
 title: "data import"
-output:github_document
+output: github_document
 ---
 
 ```{r}
 library(tidyverse)
+library(readxl)
+library(haven)
 ```
-##Read in some data
+##Data import: CSV ---- Read in some data
 
-Read in the litters dataset.
+Let's read some data using the `readr` package.
 
 ```{r}
-litters_df= read.csv("./data/FAS_litters.csv")
-litters_df=janitor::clean_names(litters_df)
+litters_df = read.csv("./data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
 ```
 
 ##Take a look at the data
+
+Printing in the console
+<!--- 
+####```{r, eval = FLASE}
+``` gives you output in file#### -->
+
+```{r, eval = FALSE}
+litters_df
+```
+
+```{r}
+head(litters_df)
+```
+
+```{r}
+skimr::skim(litters_df)
+```
+
+`read_csv` options...
+
+##Read Excel dataset
+```{r}
+library(readxl)
+mlb11_data = read_excel("data/mlb11.xlsx", n_max = 20)
+head(mlb11_data, 5)
+```
+
+##Other file format
+
+Read Excel spreadsheet
+```{r}
+mlb_df_read_excel("data/mlb11.xlsx")
+View(mlb_df)
+```
+```{r}
+lotr_words =
+  read_excel(
+    "data/LotR_Words.xlsx",
+    range = "B3:D6"
+  )
+```
+
+##Read SAS file
+```{r}
+library(haven)
+pulse_df = read_sas("./data/public_pulse_data.sas7bdat")
+head(pulse_data, 5)
+```
+##Data Export
+```{r}
+write.csv(lotr_words,file = "data/lotr_words_df.csv")
+```
+
+##Why not base r?
+```{r}
+dont_do_this_df = read.csv("data/FAS_litters.csv")
+```
+
+##gitignore file
+
 
 
 

@@ -1,3 +1,3 @@
-# data_wrangling_i
+# Data_Wrangling_i
 
-this is repository for data wrangling i, part of P8105.
+This is the repo associated with code for lectures in data data wrangling in P8105.
